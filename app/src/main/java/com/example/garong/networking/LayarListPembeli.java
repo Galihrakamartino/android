@@ -1,6 +1,7 @@
 package com.example.garong.networking;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,7 +29,7 @@ public class LayarListPembeli extends AppCompatActivity {
     RecyclerView.LayoutManager mLayoutManager;
     Context mContext;
     ApiInterface mApiInterface;
-    Button btGet;
+    Button btAddData,btGet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,15 @@ public class LayarListPembeli extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLayoutManager);
         btGet = (Button) findViewById(R.id.btGet);
+        btAddData = (Button) findViewById(R.id.btAddData);
+
+        btAddData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(mContext, LayarInsertPembeli.class);
+                startActivity(in);
+            }
+        });
 
         btGet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +72,17 @@ public class LayarListPembeli extends AppCompatActivity {
                 });
             }
         });
+
+        btAddData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, LayarInsertPembeli.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
 }

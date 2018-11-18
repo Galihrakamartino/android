@@ -1,5 +1,6 @@
 package com.example.garong.networking.Adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.garong.networking.LayarEditPembeli;
 import com.example.garong.networking.R;
 import com.example.garong.networking.model.Pembeli;
 
@@ -47,6 +49,19 @@ public class PembeliAdapter extends RecyclerView.Adapter<PembeliAdapter.PembeliV
             Glide.with(holder.itemView.getContext()).load(R.drawable.haha).into(holder
                     .mPhotoURL);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(view.getContext(), LayarEditPembeli.class);
+                in.putExtra("id_pembeli",listPembeli.get(position).getIdPembeli());
+                in.putExtra("nama",listPembeli.get(position).getNama());
+                in.putExtra("alamat",listPembeli.get(position).getAlamat());
+                in.putExtra("telp",listPembeli.get(position).getTelp());
+                in.putExtra("photo_url",listPembeli.get(position).getPhotoUrl());
+                view.getContext().startActivity(in);
+            }
+        });
     }
 
     @Override
